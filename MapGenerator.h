@@ -10,7 +10,7 @@ protected:
 	std::vector<std::vector<int>> level;
 
 public:
-	MapGenerator(int tileAmountInWidth = 50, int tileAmountInHeight = 30)
+	MapGenerator(int tileAmountInWidth = 25, int tileAmountInHeight = 15)
 		: tileAmountInWidth { tileAmountInWidth }, tileAmountInHeight{ tileAmountInHeight } 
 	{
 		generateMap();

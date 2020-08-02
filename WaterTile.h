@@ -2,12 +2,12 @@
 
 #include "TilesTextureTypes.h"
 
-class GrassTile : public TilesTextureTypes
+class WaterTile : public TilesTextureTypes
 {
 private:
 	sf::Color tileType;
 public:
-	GrassTile() : TilesTextureTypes(), tileType{ sf::Color::Green }
+	WaterTile() : TilesTextureTypes(), tileType{ sf::Color::Blue }
 	{
 		setType();
 	};

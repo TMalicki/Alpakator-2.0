@@ -1,18 +1,18 @@
 #pragma once
 
-#include "TilesTypesContainer.h"
+#include "MapTile.h"
 #include "MapGenerator.h"
 
 class loadWorld
 {
 private:
 	MapGenerator actualLevel;
-	TilesTypesContainer tilesTypes;
+	MapTile mapTile;
 
 	std::vector<std::vector<sf::RectangleShape>> renderedMap;
 
 public:
-	loadWorld() : actualLevel{}, tilesTypes{} 
+	loadWorld() : actualLevel{}, mapTile{} 
 	{
 		auto temp = actualLevel.getTilesToRender();
 		std::vector<sf::RectangleShape> tempVector{};
@@ -37,7 +37,7 @@ public:
 		{
 			for (size_t j = 0; j < tilesToRender[i].size(); j++)
 			{
-				if (tilesToRender[i][j] == 1) renderedMap[i][j] = tilesTypes.getType("grass");
+				if (tilesToRender[i][j] == 1) renderedMap[i][j] = mapTile.addNewTile(j, i);
 			}
 		}
 	};
