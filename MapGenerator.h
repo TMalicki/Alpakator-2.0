@@ -5,13 +5,13 @@
 class MapGenerator
 {
 protected:
-	int tileAmountInWidth;
-	int tileAmountInHeight;
+	const unsigned int tileAmountInWidth;
+	const unsigned int tileAmountInHeight;
 	std::vector<std::vector<int>> level;
 
 public:
-	MapGenerator(int tileAmountInWidth = 25, int tileAmountInHeight = 15)
-		: tileAmountInWidth { tileAmountInWidth }, tileAmountInHeight{ tileAmountInHeight } 
+	MapGenerator(const sf::Vector2u tileAmount)
+		: tileAmountInWidth { tileAmount.x }, tileAmountInHeight{ tileAmount.y } 
 	{
 		generateMap();
 	}

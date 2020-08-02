@@ -6,11 +6,11 @@
 class TileChosenTextureType
 {
 private:
-	std::shared_ptr<TilesTextureTypes> chosenTextureTypeForTile;
+	std::shared_ptr<TilesTextureBody> chosenTextureTypeForTile;
 public:
 	TileChosenTextureType() : chosenTextureTypeForTile{} {}
 
-	void setTextureType(std::shared_ptr<TilesTextureTypes> type) { chosenTextureTypeForTile = type; }
+	void setTextureType(std::shared_ptr<TilesTextureBody> type) { chosenTextureTypeForTile = type; }
 
 	const sf::RectangleShape getTextureType()
 	{

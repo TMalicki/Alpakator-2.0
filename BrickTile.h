@@ -1,13 +1,13 @@
 #pragma once
 
-#include "TilesTextureTypes.h"
+#include "TilesTextureBody.h"
 
-class BrickTile : public TilesTextureTypes
+class BrickTile : public TilesTextureBody
 {
 private:
 	sf::Color tileType;
 public:
-	BrickTile() : TilesTextureTypes(), tileType{ sf::Color(255,153,51) }
+	BrickTile() : TilesTextureBody(), tileType{ sf::Color(255,153,51) }
 	{
 		setType();
 	};

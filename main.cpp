@@ -2,7 +2,8 @@
 
 int main()
 {
-    Game game(1000,600);
+    Game game;
+    game.load();
     game.run();
 
 

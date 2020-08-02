@@ -1,13 +1,13 @@
 #pragma once
 
-#include "TilesTextureTypes.h"
+#include "TilesTextureBody.h"
 
-class GrassTile : public TilesTextureTypes
+class GrassTile : public TilesTextureBody
 {
 private:
 	sf::Color tileType;
 public:
-	GrassTile() : TilesTextureTypes(), tileType{ sf::Color::Green }
+	GrassTile() : TilesTextureBody(), tileType{ sf::Color::Green }
 	{
 		setType();
 	};
