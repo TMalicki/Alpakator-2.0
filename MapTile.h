@@ -21,7 +21,6 @@ public:
 		textureType.setPosition(position);
 	}
 
-
 	const sf::RectangleShape addNewTile(int posX, int posY)
 	{
 		textureType = tilesTypeContainer.getTypeRandomly();

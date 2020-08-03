@@ -12,7 +12,7 @@ void Game::run()
 
 void Game::load()
 {
-    loadWorld.attach(std::shared_ptr<ObserverInterface>(&draw));
+    loadWorld.attach(&draw);
     loadWorld.loadWorld();
-    loadWorld.detach(std::shared_ptr<ObserverInterface>(&draw));    // here is problem
+    loadWorld.detach(&draw);    // here is problem
 }

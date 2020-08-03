@@ -17,7 +17,8 @@ private:
 	LoadWorld loadWorld;
 public:
 	Game(unsigned int tileWidth = 40, unsigned int tileHeight = 40, unsigned int tileAmountHorizon = 30, unsigned int tileAmountVertical = 24)
-		: gameSettings(tileWidth, tileHeight, tileAmountHorizon, tileAmountVertical), loadWorld(gameSettings.getSettings())
+		: gameSettings(tileWidth, tileHeight, tileAmountHorizon, tileAmountVertical)
+		, loadWorld(gameSettings.getSettings())
 		, window{ sf::VideoMode(tileWidth * tileAmountHorizon, tileHeight * tileAmountVertical), "ALPAKATOR 2.0" }, draw{} {};
 	
 	//void initializeGame() { event.getWindow(window), draw.getWindow(window) }; // add it if necessary (for not sending window with every new method of those classes)

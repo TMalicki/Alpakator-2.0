@@ -6,9 +6,10 @@ class SubjectInterface
 private:
 
 public:
-	SubjectInterface() {}
+	SubjectInterface() {};
+	virtual ~SubjectInterface() {};
 
-	virtual void attach(std::shared_ptr<ObserverInterface>) = 0;
-	virtual void detach(std::shared_ptr<ObserverInterface>) = 0;
+	virtual void attach(ObserverInterface*) = 0;
+	virtual void detach(ObserverInterface*) = 0;
 	virtual void notify() = 0;
 };

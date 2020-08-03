@@ -13,9 +13,10 @@ private:
 	MapTile mapTile;
 
 	std::vector<std::vector<sf::RectangleShape>> renderedMap;
-	std::vector<std::shared_ptr<ObserverInterface>> listObserver;
+	std::vector<ObserverInterface*> listObserver;
 public:
-	LoadWorld(std::shared_ptr<GameSettings> gameSettingsPtr) : actualLevel{ gameSettingsPtr->getTileAmount() }, mapTile{ gameSettingsPtr->getTileSize() } { };
+	LoadWorld(std::shared_ptr<GameSettings> gameSettingsPtr) : actualLevel{ gameSettingsPtr->getTileAmount() }, mapTile{ gameSettingsPtr->getTileSize() }
+	{ };
 	virtual ~LoadWorld() {};
 
 	void loadWorld()
@@ -56,8 +57,14 @@ public:
 	std::vector<std::vector<sf::RectangleShape>> getRenderedMap() { return renderedMap; };
 
 	// observer design pattern methods
-	virtual void attach(std::shared_ptr<ObserverInterface> observer) { listObserver.push_back(observer); };
-	virtual void detach(std::shared_ptr<ObserverInterface> observer) { listObserver.erase(std::remove(listObserver.begin(), listObserver.end(), observer), listObserver.end()); }
-	virtual void notify() { std::for_each(listObserver.begin(), listObserver.end(), [&](std::shared_ptr<ObserverInterface> observer) { observer->updateMap(renderedMap); }); };
-
+	
+	virtual void attach(ObserverInterface* observer) { listObserver.push_back(observer); };
+	virtual void detach(ObserverInterface* observer) 
+	{ 
+		auto iterator = std::find(listObserver.begin(), listObserver.end(), observer);
+		if(iterator != listObserver.end())
+			listObserver.erase(iterator);
+	}
+	virtual void notify() { std::for_each(listObserver.begin(), listObserver.end(), [&](ObserverInterface* observer) { observer->updateMap(renderedMap); }); };
+	
 };

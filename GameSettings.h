@@ -16,7 +16,7 @@ public:
 		: tileSettings(tileWidth, tileHeight), mapSettings(tileAmountHorizon, tileAmountVertical) 
 		,windowWidth{ tileWidth * tileAmountHorizon }, windowHeight{ tileHeight * tileAmountVertical } { }
 
-	const std::shared_ptr<GameSettings> getSettings() { return std::make_shared<GameSettings>(*this); }
+	std::shared_ptr<GameSettings> getSettings() { return std::make_shared<GameSettings>(*this); }
 	const sf::Vector2u getTileSize() { return tileSettings.getTileSize(); }
 	const sf::Vector2u getTileAmount() { return mapSettings.getTileAmount(); }
 };
