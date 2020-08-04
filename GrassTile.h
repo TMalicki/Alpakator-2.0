@@ -5,12 +5,18 @@
 class GrassTile : public TilesTextureBody
 {
 private:
-	sf::Color tileType;
+
 public:
-	GrassTile() : TilesTextureBody(), tileType{ sf::Color::Green }
+	GrassTile() : TilesTextureBody() 
 	{
-		setType();
+		loadTexture();
 	};
 
-	virtual void setType() { tile.setFillColor(tileType); }
+	virtual void loadTexture()
+	{
+		if (!tileSetTexture.loadFromFile("tilesTextures/grassTile.png"))
+		{
+			std::cout << "Texture was not loaded.";
+		}
+	}
 };

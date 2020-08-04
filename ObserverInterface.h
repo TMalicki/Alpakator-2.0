@@ -8,5 +8,5 @@ public:
 	ObserverInterface() {};
 	virtual ~ObserverInterface() {};
 
-	virtual void updateMap(std::vector<std::vector<sf::RectangleShape>>) = 0;
+	virtual void updateMap(std::vector<std::vector<sf::Sprite>>) = 0;
 };

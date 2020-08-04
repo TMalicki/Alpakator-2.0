@@ -5,12 +5,18 @@
 class WaterTile : public TilesTextureBody
 {
 private:
-	sf::Color tileType;
+
 public:
-	WaterTile() : TilesTextureBody(), tileType{ sf::Color::Blue }
+	WaterTile() : TilesTextureBody() 
 	{
-		setType();
+		loadTexture();
 	};
 
-	virtual void setType() { tile.setFillColor(tileType); }
+	virtual void loadTexture()
+	{
+		if (!tileSetTexture.loadFromFile("tilesTextures/waterTile.png"))
+		{
+			std::cout << "Texture was not loaded.";
+		}
+	}
 };

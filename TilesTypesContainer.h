@@ -14,8 +14,8 @@ public:
 	TilesTypesContainer()
 	{	
 		add("GrassTile");
-		add("WaterTile");
 		add("BrickTile");
+		add("WaterTile");
 	}
 
 	void add(std::string tileType)
@@ -26,9 +26,10 @@ public:
 		else if (tileType == "WaterTile") tiles.back()->setTextureType(std::make_shared<WaterTile>());
 	}
 
-	const sf::RectangleShape getTypeRandomly()
+	const sf::Texture getTexturedTileRandomly()
 	{
 		int tileNumber = randomGenerator.generateRandomInt(0, tiles.size() - 1);
-		return tiles[tileNumber]->getTextureType();
+		std::cout << tileNumber << "\n";
+		return tiles[tileNumber]->getTexturedTile();
 	}
 };

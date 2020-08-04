@@ -5,12 +5,18 @@
 class BrickTile : public TilesTextureBody
 {
 private:
-	sf::Color tileType;
+
 public:
-	BrickTile() : TilesTextureBody(), tileType{ sf::Color(255,153,51) }
+	BrickTile() : TilesTextureBody()
 	{
-		setType();
+		loadTexture();
 	};
 
-	virtual void setType() { tile.setFillColor(tileType); }
+	virtual void loadTexture()
+	{
+		if (!tileSetTexture.loadFromFile("tilesTextures/dirtTile.png"))
+		{
+			std::cout << "Texture was not loaded.";
+		}
+	}
 };

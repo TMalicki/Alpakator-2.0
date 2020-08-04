@@ -11,9 +11,5 @@ public:
 	TileChosenTextureType() : chosenTextureTypeForTile{} {}
 
 	void setTextureType(std::shared_ptr<TilesTextureBody> type) { chosenTextureTypeForTile = type; }
-
-	const sf::RectangleShape getTextureType()
-	{
-		return chosenTextureTypeForTile->getTile();
-	}
+	const sf::Texture getTexturedTile() { return chosenTextureTypeForTile->getTexturedTile(); }
 };

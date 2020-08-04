@@ -5,17 +5,13 @@
 class TilesTextureBody
 {
 protected:
-	sf::RectangleShape tile; // here will be texture
+	sf::Texture tileSetTexture;
 
 public:
-	TilesTextureBody()
-	{
-		tile.setOutlineThickness(-1);
-		tile.setOutlineColor(sf::Color::Black);
-	}
+	TilesTextureBody() : tileSetTexture{} { }
 	virtual ~TilesTextureBody() {};
 
-	virtual void setType() = 0;
-	const sf::RectangleShape getTile() { return tile; }
+	virtual void loadTexture() = 0;
+	const sf::Texture getTexturedTile() { return tileSetTexture; }
 };
 

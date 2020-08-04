@@ -12,7 +12,7 @@ private:
 	MapGenerator actualLevel;
 	MapTile mapTile;
 
-	std::vector<std::vector<sf::RectangleShape>> renderedMap;
+	std::vector<std::vector<sf::Sprite>> renderedMap;
 	std::vector<ObserverInterface*> listObserver;
 public:
 	LoadWorld(std::shared_ptr<GameSettings> gameSettingsPtr) : actualLevel{ gameSettingsPtr->getTileAmount() }, mapTile{ gameSettingsPtr->getTileSize() }
@@ -28,11 +28,11 @@ public:
 	void prepareTheWorld()
 	{
 		auto temp = actualLevel.getTilesToRender();
-		std::vector<sf::RectangleShape> tempVector{};
+		std::vector<sf::Sprite> tempVector{};
 
 		for (size_t i = 0; i < temp[0].size(); i++)
 		{
-			tempVector.push_back(sf::RectangleShape(sf::Vector2f{ 0,0 }));
+			tempVector.push_back(sf::Sprite());
 		}
 		for (size_t j = 0; j < temp.size(); j++)
 		{
@@ -54,7 +54,7 @@ public:
 		notify();
 	};
 
-	std::vector<std::vector<sf::RectangleShape>> getRenderedMap() { return renderedMap; };
+	std::vector<std::vector<sf::Sprite>> getRenderedMap() { return renderedMap; };
 
 	// observer design pattern methods
 	
