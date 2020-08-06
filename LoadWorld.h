@@ -12,7 +12,7 @@ private:
 	MapGenerator actualLevel;
 	MapTile mapTile;
 
-	std::vector<std::vector<sf::Sprite>> renderedMap;
+	std::vector<std::vector<MapTile*>> mapTiles;
 	std::vector<ObserverInterface*> listObserver;
 public:
 	LoadWorld(std::shared_ptr<GameSettings> gameSettingsPtr) : actualLevel{ gameSettingsPtr->getTileAmount() }, mapTile{ gameSettingsPtr->getTileSize() }
@@ -28,15 +28,15 @@ public:
 	void prepareTheWorld()
 	{
 		auto temp = actualLevel.getTilesToRender();
-		std::vector<sf::Sprite> tempVector{};
+		std::vector<MapTile*> tempTiles{};
 
-		for (size_t i = 0; i < temp[0].size(); i++)
+		for (size_t i = 0; i < temp.size(); i++)
 		{
-			tempVector.push_back(sf::Sprite());
-		}
-		for (size_t j = 0; j < temp.size(); j++)
-		{
-			renderedMap.push_back(tempVector);
+			mapTiles.push_back(tempTiles);
+			for (size_t j = 0; j < temp[i].size(); j++)
+			{
+				mapTiles[i].push_back(new MapTile(mapTile.getTileSize()));
+			}
 		}
 	}
 
@@ -48,13 +48,14 @@ public:
 		{
 			for (size_t j = 0; j < tilesToRender[i].size(); j++)
 			{
-				if (tilesToRender[i][j] == 1) renderedMap[i][j] = mapTile.addNewTile(j, i);
+				if (tilesToRender[i][j] == 1)
+				{
+					mapTiles[i][j]->generateNewTile(j, i);
+				}
 			}
 		}
 		notify();
 	};
-
-	std::vector<std::vector<sf::Sprite>> getRenderedMap() { return renderedMap; };
 
 	// observer design pattern methods
 	
@@ -65,6 +66,6 @@ public:
 		if(iterator != listObserver.end())
 			listObserver.erase(iterator);
 	}
-	virtual void notify() { std::for_each(listObserver.begin(), listObserver.end(), [&](ObserverInterface* observer) { observer->updateMap(renderedMap); }); };
+	virtual void notify() { std::for_each(listObserver.begin(), listObserver.end(), [&](ObserverInterface* observer) { observer->updateMap(mapTiles); }); };
 	
 };

@@ -6,13 +6,13 @@
 class Draw : public ObserverInterface
 {
 private:
-	std::vector<std::vector<sf::Sprite>> renderedMap;
+	std::vector<std::vector<MapTile*>> renderedMap;
 	TilesTypesContainer container;
 public:
 	Draw() {};
 	void draw(sf::RenderWindow&);
 
-	virtual void updateMap(std::vector<std::vector<sf::Sprite>> renderedMap)
+	virtual void updateMap(std::vector<std::vector<MapTile*>> renderedMap)
 	{
 		this->renderedMap = renderedMap;
 	}

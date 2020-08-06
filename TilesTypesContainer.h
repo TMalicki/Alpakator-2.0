@@ -29,7 +29,6 @@ public:
 	const sf::Texture getTexturedTileRandomly()
 	{
 		int tileNumber = randomGenerator.generateRandomInt(0, tiles.size() - 1);
-		std::cout << tileNumber << "\n";
 		return tiles[tileNumber]->getTexturedTile();
 	}
 };
