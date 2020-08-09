@@ -35,6 +35,29 @@ public:
 
 		return this;
 	}
+
+	MapTile* generateNewTileButNotWalkable(int posX, int posY)
+	{
+		tileTexture = tilesTypeContainer.getTexturedTileRandomlyButNotGrassType();
+		tileTexture.setRepeated(true);
+		tileSprite.setTexture(tileTexture);
+		setSpriteScale();
+		setSpritePosition(posX, posY);
+
+		return this;
+	}
+
+	MapTile* generateWalkableTile(int posX, int posY)
+	{
+		tileTexture = tilesTypeContainer.getGrassTileTexture();
+		tileTexture.setRepeated(true);
+		tileSprite.setTexture(tileTexture);
+		setSpriteScale();
+		setSpritePosition(posX, posY);
+
+		return this;
+	}
+
 	const sf::Sprite& getSprite()
 	{
 		return tileSprite;

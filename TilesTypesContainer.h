@@ -31,4 +31,15 @@ public:
 		int tileNumber = randomGenerator.generateRandomInt(0, tiles.size() - 1);
 		return tiles[tileNumber]->getTexturedTile();
 	}
+
+	const sf::Texture getTexturedTileRandomlyButNotGrassType()
+	{
+		int tileNumber = randomGenerator.generateRandomInt(1, tiles.size() - 1);
+		return tiles[tileNumber]->getTexturedTile();
+	}
+
+	const sf::Texture getGrassTileTexture()
+	{
+		return tiles[0]->getTexturedTile();
+	}
 };

@@ -5,29 +5,31 @@
 #include "GameSettings.h"
 #include "SubjectInterface.h"
 #include "ObserverInterface.h"
+#include "RandomWalkAlgorithm.h"
 
 class LoadWorld : public SubjectInterface
 {
 private:
-	MapGenerator actualLevel;
+	std::shared_ptr<MapGenerator> actualLevel;
 	MapTile mapTile;
 
 	std::vector<std::vector<MapTile*>> mapTiles;
 	std::vector<ObserverInterface*> listObserver;
 public:
-	LoadWorld(std::shared_ptr<GameSettings> gameSettingsPtr) : actualLevel{ gameSettingsPtr->getTileAmount() }, mapTile{ gameSettingsPtr->getTileSize() }
+	LoadWorld(std::shared_ptr<GameSettings> gameSettingsPtr) : actualLevel(std::make_shared<RandomWalkAlgorithm>(gameSettingsPtr->getTileAmount())), mapTile{ gameSettingsPtr->getTileSize() }
 	{ };
 	virtual ~LoadWorld() {};
 
 	void loadWorld()
 	{
+		actualLevel->generateDungeonWithAlgorithm();
 		prepareTheWorld();
 		generateWorld();
 	}
 
 	void prepareTheWorld()
 	{
-		auto temp = actualLevel.getTilesToRender();
+		auto temp = actualLevel->getTilesToRender();
 		std::vector<MapTile*> tempTiles{};
 
 		for (size_t i = 0; i < temp.size(); i++)
@@ -42,7 +44,7 @@ public:
 
 	void generateWorld() 
 	{
-		std::vector<std::vector<int>> tilesToRender = actualLevel.getTilesToRender();
+		std::vector<std::vector<int>> tilesToRender = actualLevel->getTilesToRender();
 
 		for (size_t i = 0; i < tilesToRender.size(); i++)
 		{
@@ -50,8 +52,9 @@ public:
 			{
 				if (tilesToRender[i][j] == 1)
 				{
-					mapTiles[i][j]->generateNewTile(j, i);
+					mapTiles[i][j]->generateWalkableTile(j, i);
 				}
+				else mapTiles[i][j]->generateNewTileButNotWalkable(j, i); // mapTiles[i][j]->generateNewTile(j, i); //
 			}
 		}
 		notify();
