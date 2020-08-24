@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 void Game::run()
 {
     while (window.isOpen())
@@ -14,5 +13,5 @@ void Game::load()
 {
     loadWorld.attach(&draw);
     loadWorld.loadWorld();
-    loadWorld.detach(&draw);    // here is problem
+    loadWorld.detach(&draw);   
 }

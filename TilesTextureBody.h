@@ -10,8 +10,8 @@ protected:
 public:
 	TilesTextureBody() : tileSetTexture{} { }
 	virtual ~TilesTextureBody() {};
-
 	virtual void loadTexture() = 0;
-	const sf::Texture getTexturedTile() { return tileSetTexture; }
+
+	const sf::Texture& getTexturedTile() { return tileSetTexture; }
 };
 

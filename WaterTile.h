@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include "TilesTextureBody.h"
 
 class WaterTile : public TilesTextureBody

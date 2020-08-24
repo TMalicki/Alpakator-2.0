@@ -10,6 +10,6 @@ private:
 public:
 	TileChosenTextureType() : chosenTextureTypeForTile{} {}
 
-	void setTextureType(std::shared_ptr<TilesTextureBody> type) { chosenTextureTypeForTile = type; }
-	const sf::Texture getTexturedTile() { return chosenTextureTypeForTile->getTexturedTile(); }
+	void setTextureType(const std::shared_ptr<TilesTextureBody>& type) { chosenTextureTypeForTile = type; }
+	const sf::Texture& getTexturedTile() { return chosenTextureTypeForTile->getTexturedTile(); }
 };

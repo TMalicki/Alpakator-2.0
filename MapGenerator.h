@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "RandomNumberGenerator.h"
+#include <SFML/Graphics.hpp>
 
 // that should be strategy pattern!!!
 
@@ -14,27 +15,13 @@ protected: //? is it necessary?
 
 private:
 public:
-	MapGenerator(const sf::Vector2u tileAmount)
-		: tileAmountInWidth{ tileAmount.x }, tileAmountInHeight{ tileAmount.y }
+	MapGenerator(const sf::Vector2u tileAmount) : tileAmountInWidth{ tileAmount.x }, tileAmountInHeight{ tileAmount.y }
 	{
 		generateMap();
 	}
-
-	void generateMap()
-	{
-		std::vector<int> temp{};
-		for (size_t i = 0; i < tileAmountInWidth; i++)
-		{
-			temp.push_back(0);	
-		}
-
-		for (size_t j = 0; j < tileAmountInHeight; j++)
-		{
-			level.push_back(temp);
-		}
-	};
-
-	
+	virtual ~MapGenerator() {};
 	virtual void generateDungeonWithAlgorithm() = 0;
+
+	void generateMap();
 	std::vector<std::vector<int>> getTilesToRender() { return level; };
 };

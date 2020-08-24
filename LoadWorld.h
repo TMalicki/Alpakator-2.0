@@ -13,62 +13,20 @@ private:
 	std::shared_ptr<MapGenerator> actualLevel;
 	MapTile mapTile;
 
-	std::vector<std::vector<MapTile*>> mapTiles;
+	std::vector<std::vector<std::shared_ptr<MapTile>>> mapTiles;
 	std::vector<ObserverInterface*> listObserver;
 public:
 	LoadWorld(std::shared_ptr<GameSettings> gameSettingsPtr) : actualLevel(std::make_shared<RandomWalkAlgorithm>(gameSettingsPtr->getTileAmount())), mapTile{ gameSettingsPtr->getTileSize() }
 	{ };
 	virtual ~LoadWorld() {};
 
-	void loadWorld()
-	{
-		actualLevel->generateDungeonWithAlgorithm();
-		prepareTheWorld();
-		generateWorld();
-	}
-
-	void prepareTheWorld()
-	{
-		auto temp = actualLevel->getTilesToRender();
-		std::vector<MapTile*> tempTiles{};
-
-		for (size_t i = 0; i < temp.size(); i++)
-		{
-			mapTiles.push_back(tempTiles);
-			for (size_t j = 0; j < temp[i].size(); j++)
-			{
-				mapTiles[i].push_back(new MapTile(mapTile.getTileSize()));
-			}
-		}
-	}
-
-	void generateWorld() 
-	{
-		std::vector<std::vector<int>> tilesToRender = actualLevel->getTilesToRender();
-
-		for (size_t i = 0; i < tilesToRender.size(); i++)
-		{
-			for (size_t j = 0; j < tilesToRender[i].size(); j++)
-			{
-				if (tilesToRender[i][j] == 1)
-				{
-					mapTiles[i][j]->generateWalkableTile(j, i);
-				}
-				else mapTiles[i][j]->generateNewTileButNotWalkable(j, i); // mapTiles[i][j]->generateNewTile(j, i); //
-			}
-		}
-		notify();
-	};
+	void loadWorld();
+	void prepareTheWorld();
+	void generateWorld();
 
 	// observer design pattern methods
-	
 	virtual void attach(ObserverInterface* observer) { listObserver.push_back(observer); };
-	virtual void detach(ObserverInterface* observer) 
-	{ 
-		auto iterator = std::find(listObserver.begin(), listObserver.end(), observer);
-		if(iterator != listObserver.end())
-			listObserver.erase(iterator);
-	}
+	virtual void detach(ObserverInterface* observer);
 	virtual void notify() { std::for_each(listObserver.begin(), listObserver.end(), [&](ObserverInterface* observer) { observer->updateMap(mapTiles); }); };
 	
 };
