@@ -2,6 +2,7 @@
 
 #include "GameSettings.h"
 #include "LoadWorld.h"
+#include "Hero.h"
 
 #include "Draw.h"
 #include "Event.h"
@@ -15,10 +16,12 @@ private:
 	Draw draw;
 	GameSettings gameSettings;
 	LoadWorld loadWorld;
+	Hero hero;
 public:
 	Game(unsigned int tileWidth = 40, unsigned int tileHeight = 40, unsigned int tileAmountHorizon = 30, unsigned int tileAmountVertical = 24)
 		: gameSettings(tileWidth, tileHeight, tileAmountHorizon, tileAmountVertical)
 		, loadWorld(gameSettings.getSettings())
+		, hero()
 		, window{ sf::VideoMode(tileWidth * tileAmountHorizon, tileHeight * tileAmountVertical), "ALPAKATOR 2.0" }, draw{} {};
 	
 	//void initializeGame() { event.getWindow(window), draw.getWindow(window) }; // add it if necessary (for not sending window with every new method of those classes)

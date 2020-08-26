@@ -7,7 +7,7 @@ class Draw : public ObserverInterface
 {
 private:
 	std::vector<std::vector<std::shared_ptr<MapTile>>> renderedMap;
-	TilesTypesContainer container;
+	sf::Sprite hero;
 public:
 	Draw() {};
 	void draw(sf::RenderWindow&);
@@ -16,4 +16,8 @@ public:
 	{
 		this->renderedMap = renderedMap;
 	}
+	virtual void updateHero(const sf::Sprite& hero) 
+	{
+		this->hero = hero;
+	};
 };

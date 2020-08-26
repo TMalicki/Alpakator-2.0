@@ -4,15 +4,14 @@
 
 void Draw::draw(sf::RenderWindow& window)
 {
-	//window.clear();
-
+	window.clear();
 	for (size_t i = 0; i < renderedMap.size(); i++)
 	{
 		for (size_t j = 0; j < renderedMap[i].size(); j++)
 		{
 			window.draw(renderedMap[i][j]->getSprite());
+			window.draw(hero);
 		}
 	}
-	
-	//window.display();
+	window.display();
 }

@@ -28,5 +28,4 @@ public:
 	virtual void attach(ObserverInterface* observer) { listObserver.push_back(observer); };
 	virtual void detach(ObserverInterface* observer);
 	virtual void notify() { std::for_each(listObserver.begin(), listObserver.end(), [&](ObserverInterface* observer) { observer->updateMap(mapTiles); }); };
-	
 };
