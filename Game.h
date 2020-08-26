@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameSettings.h"
-#include "LoadWorld.h"
-#include "Hero.h"
+#include "SettingClasses/GameSettings.h"
+#include "MapClasses/LoadWorld.h"
+#include "HeroClasses/Hero.h"
 
 #include "Draw.h"
 #include "Event.h"

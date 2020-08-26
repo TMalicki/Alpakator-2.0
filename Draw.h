@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "loadWorld.h"
+#include "MapClasses/LoadWorld.h"
 
 class Draw : public ObserverInterface
 {
