@@ -7,6 +7,7 @@ void Game::run()
         event.updateEvent(window);
 
         hero->update();
+        gorgon->update();
         draw.draw(window);  
     }
     hero->detach(&draw);
@@ -19,4 +20,5 @@ void Game::load()
     loadWorld.detach(&draw);   
 
     hero->attach(&draw);
+    gorgon->attach(&draw);
 }
