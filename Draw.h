@@ -7,7 +7,7 @@ class Draw : public ObserverInterface
 {
 private:
 	std::vector<std::vector<std::shared_ptr<MapTile>>> renderedMap;
-	sf::Sprite hero;
+	sf::Sprite CreaturesInterface;
 public:
 	Draw() {};
 	void draw(sf::RenderWindow&);
@@ -16,8 +16,8 @@ public:
 	{
 		this->renderedMap = renderedMap;
 	}
-	virtual void updateHero(const sf::Sprite& hero) 
+	virtual void updateCreatures(const sf::Sprite& CreaturesInterface) 
 	{
-		this->hero = hero;
+		this->CreaturesInterface = CreaturesInterface;
 	};
 };

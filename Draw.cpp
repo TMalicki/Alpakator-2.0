@@ -10,7 +10,7 @@ void Draw::draw(sf::RenderWindow& window)
 		for (size_t j = 0; j < renderedMap[i].size(); j++)
 		{
 			window.draw(renderedMap[i][j]->getSprite());
-			window.draw(hero);
+			window.draw(CreaturesInterface);
 		}
 	}
 	window.display();

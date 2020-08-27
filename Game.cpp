@@ -2,15 +2,14 @@
 
 void Game::run()
 {
-   // window.setFramerateLimit(15);
-
     while (window.isOpen())
     {
         event.updateEvent(window);
 
-        hero.heroMove();
+        hero->update();
         draw.draw(window);  
     }
+    hero->detach(&draw);
 }
 
 void Game::load()
@@ -19,7 +18,5 @@ void Game::load()
     loadWorld.loadWorld();
     loadWorld.detach(&draw);   
 
-    hero.attach(&draw);
-    // hero.update();
-    // hero.detach(&draw);
+    hero->attach(&draw);
 }
